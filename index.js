@@ -8,7 +8,7 @@ app.get('/', (req, res) => {
   res.send('API funcionando');
 });
 
-// ==================== RUTAS PARA ALUMNOS ====================
+
 app.get('/alumnos', async (req, res) => {
   try {
     const resultado = await pool.query('SELECT * FROM alumno');
@@ -42,9 +42,9 @@ app.post('/alumnos', async (req, res) => {
   }
 });
 
-// ==================== RUTAS PARA MATERIAS ====================
 
-// GET /materias - Obtener todas las materias
+
+
 app.get('/materias', async (req, res) => {
   try {
     const resultado = await pool.query('SELECT * FROM materia ORDER BY id ASC');
@@ -55,12 +55,11 @@ app.get('/materias', async (req, res) => {
   }
 });
 
-// POST /materias - Insertar una nueva materia
 app.post('/materias', async (req, res) => {
   try {
     const { nombre, semestre, creditos } = req.body;
 
-    // Validación de campos obligatorios
+
     if (!nombre) {
       return res.status(400).json({ error: 'El campo nombre es obligatorio' });
     }
